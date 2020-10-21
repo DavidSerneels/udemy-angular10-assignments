@@ -15,4 +15,44 @@
       -->
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email"
+                 id="email"
+                 class="form-control"
+                 ngModel name="email"
+                 required email
+                 #emailInput="ngModel">
+          <span class="help-block" *ngIf="emailInput.invalid && emailInput.touched">Please enter a valid email address!</span>
+        </div>
+        <div class="form-group">
+          <label for="subscription">Subscription</label>
+          <select id="subscription"
+                  class="form-control"
+                  [ngModel]="defaultSubscription" name="subscription">
+            <option value="basic">Basic</option>
+            <option value="advanced">Advanced</option>
+            <option value="pro">Pro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password"
+                 id="password"
+                 class="form-control"
+                 ngModel name="password"
+                 required
+                 #passwordInput="ngModel">
+          <span class="help-block" *ngIf="passwordInput.invalid && passwordInput.touched">Please enter a valid password!</span>
+        </div>
+        <button class="btn btn-primary"
+                type="submit"
+                [disabled]="form.invalid">Submit</button>
+      </form>
+      <span class="help-block" *ngIf="form.invalid && form.touched">Please enter all fields correctly!</span>
+    </div>
+  </div>
 </div>
