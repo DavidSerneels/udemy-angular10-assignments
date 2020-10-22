@@ -14,6 +14,33 @@
 
           Upon submitting the form, simply print the value to the console
       -->
+      <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="projectname">Project name: </label>
+          <input type="text"
+                 id="projectname"
+                 formControlName="projectname"
+                 class="form-control">
+          <span *ngIf="reactiveForm.get('projectname').invalid && reactiveForm.get('projectname').touched" class="help-block">This value is invalid</span>
+        </div>
+        <div class="form-group">
+          <label for="email">Project email: </label>
+          <input type="text"
+                 id="email"
+                 formControlName="email"
+                 class="form-control">
+          <span *ngIf="reactiveForm.get('email').invalid && reactiveForm.get('email').touched" class="help-block">This value is invalid</span>
+        </div>
+        <div class="form-group">
+          <label for="status">Project status: </label>
+            <select id="status"
+                    class="form-control"
+                    formControlName="status">
+              <option *ngFor="let projectStatus of projectStatusValues" [ngValue]="projectStatus">{{ projectStatus }}</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="reactiveForm.invalid">Submit</button>
+      </form>
     </div>
   </div>
 </div>
